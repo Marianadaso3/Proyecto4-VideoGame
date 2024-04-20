@@ -39,4 +39,14 @@ public class Character : MonoBehaviour
     {
         Gizmos.DrawWireSphere(groundCheck.position, radius);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            GameManager.Instance.ShowGameOverScreen();
+            characterAnimator.SetTrigger("Die");
+            Time.timeScale = 0f;
+        }
+    }
 }
